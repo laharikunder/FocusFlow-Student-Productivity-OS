@@ -37,8 +37,6 @@ cd focusflow
 # 3. Open the project
 Just double-click index.html
 
-> No fancy build tools. No frameworks. Just good old-fashioned HTML, CSS & JS.
-
 ---
 
 ## Tech stack used
