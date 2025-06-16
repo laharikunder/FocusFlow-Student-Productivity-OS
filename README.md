@@ -28,13 +28,13 @@ Because:
 
 Getting started is easy-peasy.
 
-# 1. Clone this repo
+### 1. Clone this repo
 git clone https://github.com/your-username/focusflow.git
 
-# 2. Navigate into it
+### 2. Navigate into it
 cd focusflow
 
-# 3. Open the project
+### 3. Open the project
 Just double-click index.html
 
 ---
