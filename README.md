@@ -6,7 +6,7 @@
 </p>
 
 ---
-Welcome to FocusForge — a zero-friction productivity web app designed for students who want to plan, focus, and thrive without flipping between different tabs and losing their minds
+Welcome to FocusFlow — a zero-friction productivity web app designed for students who want to plan, focus, and thrive without flipping between different tabs and losing their minds
 ##  Why FocusFlow?
 Because:   
 -> You're tired of juggling Google Calendar, Notion, Pomodoro timers, and sticky notes like a circus clown  
