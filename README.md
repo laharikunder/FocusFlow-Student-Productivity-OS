@@ -8,7 +8,7 @@
 ---
 Welcome to FocusForge — a zero-friction productivity web app designed for students who want to plan, focus, and thrive without flipping between different tabs and losing their minds
 ##  Why FocusForge?
-Because:
+Because:   
 -> You're tired of juggling Google Calendar, Notion, Pomodoro timers, and sticky notes like a circus clown  
 -> You deserve an all-in-one dashboard that actually gets you  
 -> Your attention span needs a personal trainer (Hello, Focus Mode!)  
@@ -28,7 +28,6 @@ Because:
 
 Getting started is easy-peasy.
 
-bash
 # 1. Clone this repo
 git clone https://github.com/your-username/focusforge.git
 
