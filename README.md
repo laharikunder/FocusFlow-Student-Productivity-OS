@@ -1,8 +1,8 @@
-<h1 align="center" style="font-family:'Orbitron', sans-serif;"> FOCUSFLOW </h1>
+<h1 align="center" style="font-family:'Georgia', sans-serif;"> FOCUSFLOW </h1>
 
 <p align="center">
  <strong>Zero-friction productivity OS built for your overthinking, overstimulated, overachieving brain. </strong> <br>
-<i>“Your Chaos, forged into focus. </i>
+<i>“Your Chaos, forged into focus." </i>
 </p>
 
 ---
@@ -92,8 +92,8 @@ Built by a squad of code warriors on a mission to make studying *less painful* :
 ---
 Built by students. For students.
 Because attention is currency — and FocusFlow helps you invest it wisely.
-<br><p align="center">
-  <strong>Don’t force it. Forge it. </strong>
-</p>
+<br> <h2 align="center">
+   <strong>Don’t force it. Forge it. </strong>
+</h2>
 
 ---
