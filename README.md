@@ -64,7 +64,7 @@ pdf.js – to turn your lecture dumps into bullet points
 
 ## Team details
 
-Built by a squad of code warriors on a mission to make studying ✨less painful✨:
+Built by a squad of code warriors on a mission to make studying *less painful* :
 
  -> Lahari Kunder – Pomodoro + productivity logic  
  -> Chinmayi Upadhyay – Notes master + sticky chaos handler  
