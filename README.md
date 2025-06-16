@@ -29,10 +29,10 @@ Because:
 Getting started is easy-peasy.
 
 # 1. Clone this repo
-git clone https://github.com/your-username/focusforge.git
+git clone https://github.com/your-username/focusflow.git
 
 # 2. Navigate into it
-cd focusforge
+cd focusflow
 
 # 3. Open the project
 Just double-click index.html
@@ -93,7 +93,7 @@ Built by a squad of code warriors on a mission to make studying ✨less painful�
 
 ---
 Built by students. For students.
-Because attention is currency — and FocusForge helps you invest it wisely.
+Because attention is currency — and FocusFlow helps you invest it wisely.
 <br><p align="center">
   <strong>Don’t force it. Forge it. </strong>
 </p>
