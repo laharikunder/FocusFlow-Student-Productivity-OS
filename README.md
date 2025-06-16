@@ -1,4 +1,4 @@
-<h1 align="center" style="font-family:'Orbitron', sans-serif;"> FOCUSFORGE </h1>
+<h1 align="center" style="font-family:'Orbitron', sans-serif;"> FOCUSFLOW </h1>
 
 <p align="center">
  <strong>Zero-friction productivity OS built for your overthinking, overstimulated, overachieving brain. </strong> <br>
