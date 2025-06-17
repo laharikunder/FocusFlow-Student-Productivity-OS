@@ -29,10 +29,10 @@ Because:
 Getting started is easy-peasy.
 
 ### 1. Clone this repo
-git clone https://github.com/your-username/focusflow.git
+git clone https://github.com/HackSomeThorns-2025/FocusForge.git
 
 ### 2. Navigate into it
-cd focusflow
+cd FocusForge
 
 ### 3. Open the project
 Just double-click index.html
@@ -66,11 +66,11 @@ pdf.js – to turn your lecture dumps into bullet points
 
 Built by a squad of code warriors on a mission to make studying *less painful* :
 
- -> Lahari Kunder – Pomodoro + productivity logic  
- -> Chinmayi Upadhyay – Notes master + sticky chaos handler  
- -> Manya Kalkur – Summarizer + PDF parser  
- -> Nishtha – UI/UX vibes + dashboard layout  
- -> Rishitha Kantevari – Integration czar + deploy flow   
+ -> Rishitha Kantevari – Pomodoro + productivity logic  
+ -> Manya Kalkur – Notes master + sticky chaos handler  
+ -> Nishtha – Summarizer + PDF parser  
+ -> Lahari V Kunder – UI/UX vibes + dashboard layout  
+ -> Chinmayi Upadhyay – Integration czar + deploy flow   
 
 ---
 
