@@ -1,0 +1,10 @@
+Rule 3 – "Animate. Elevate. Captivate."
+
+- The main UI/UX layout now includes animations such as floating effects, typing effects, and background gradients. These enhancements improve user engagement and visual appeal.
+
+Implementation is available in the feature branch:
+➡️ https://github.com/HackSomeThorns-2025/FocusForge/tree/feature/ui-ux-layout
+
+also available in:
+➡️ https://github.com/HackSomeThorns-2025/FocusForge/tree/feature/to-do_list
+

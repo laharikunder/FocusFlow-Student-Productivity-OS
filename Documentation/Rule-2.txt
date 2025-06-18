@@ -1,0 +1,10 @@
+Rule 2 – “Add a Dark Mode Toggle to your website”
+
+Implementation is available in the feature branch:
+- https://github.com/HackSomeThorns-2025/FocusForge/tree/feature/to-do_list
+
+- https://github.com/HackSomeThorns-2025/FocusForge/tree/feature/notes-flow
+
+- https://github.com/HackSomeThorns-2025/FocusForge/tree/feature/pomodoro-timer
+
+- https://github.com/HackSomeThorns-2025/FocusForge/tree/feature/pdf-parser
