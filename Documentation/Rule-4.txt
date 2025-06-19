@@ -1,6 +1,6 @@
 Rule 4 – "Make it Shareable."
 
-Implementation is available in the feature branch:
+Implementation is available in the main branch:
 - https://github.com/HackSomeThorns-2025/FocusForge/tree/main/FocusFlow
 
 Description:
