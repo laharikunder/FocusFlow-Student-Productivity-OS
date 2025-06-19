@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FocusFlow</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link href="./style.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusFlow - Frictionless Productivity OS</title>
+    <link href="./style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -21,6 +21,15 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
+            <!-- Toggle Switch -->
+            <div class="theme-toggle-switch">
+                <input type="checkbox" id="theme-toggle">
+                <label for="theme-toggle" class="switch">
+                <span class="icon sun">☀️</span>
+                <span class="icon moon">🌙</span>
+                <span class="ball"></span>
+                </label>
+            </div>
             <div class="logo">
                 <span class="logo-text">FocusFlow</span>
             </div>
@@ -85,7 +94,135 @@
                 </div>
             </div>
         </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
     </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">Powerful Features</h2>
+                <p class="section-subtitle animate-on-scroll">Everything you need for productive studying</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <div class="icon-dashboard"></div>
+                    </div>
+                    <h3>Smart Dashboard</h3>
+                    <p>Drag-and-drop taskboard with focus timer and distraction detection</p>
+                    <button class="feature-btn" data-page="dashboard">Explore Dashboard</button>
+                </div>
+                <div class="feature-card animate-on-scroll delay-1">
+                    <div class="feature-icon">
+                        <div class="icon-calendar"></div>
+                    </div>
+                    <h3>Visual Planner</h3>
+                    <p>Weekly calendar with progress heatmap and activity tracking</p>
+                    <button class="feature-btn" data-page="planner">View Planner</button>
+                </div>
+                <div class="feature-card animate-on-scroll delay-2">
+                    <div class="feature-icon">
+                        <div class="icon-notes"></div>
+                    </div>
+                    <h3>Smart Notes</h3>
+                    <p>Draggable sticky notes with tagging and resource management</p>
+                    <button class="feature-btn" data-page="notes">Try Notes</button>
+                </div>
+                <div class="feature-card animate-on-scroll delay-3">
+                    <div class="feature-icon">
+                        <div class="icon-focus"></div>
+                    </div>
+                    <h3>Focus Mode</h3>
+                    <p>Distraction-free environment with gentle nudges and recovery alerts</p>
+                    <button class="feature-btn" data-page="focus">Enter Focus</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="animate-on-scroll">Why FocusFlow?</h2>
+                    <p class="animate-on-scroll delay-1">
+                        FocusFlow solves student time management by combining smart planning, gentle nudges, intelligent reminders, and learning tools. It doesn't just organize your study life—it adapts, responds, and grows with your focus needs.
+                    </p>
+                    <div class="stats animate-on-scroll delay-2">
+                        <div class="stat">
+                            <span class="stat-number" data-target="95">0</span>%
+                            <span class="stat-label">Productivity Boost</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="60">0</span>%
+                            <span class="stat-label">Less Distraction</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="80">0</span>%
+                            <span class="stat-label">Better Focus</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual animate-on-scroll delay-1">
+                    <div class="feature-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">⚡</span>
+                            <span>No Login Required</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🎯</span>
+                            <span>Adaptive Focus System</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">📊</span>
+                            <span>Progress Tracking</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🔄</span>
+                            <span>Smart Reminders</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome to FocusFlow</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Let's set up your productivity workspace in just a few steps.</p>
+                <div class="setup-options">
+                    <button class="setup-btn" data-setup="identity">
+                        <span class="setup-icon">👤</span>
+                        <span>Set Up Identity</span>
+                    </button>
+                    <button class="setup-btn" data-setup="dashboard">
+                        <span class="setup-icon">📊</span>
+                        <span>Go to Dashboard</span>
+                    </button>
+                    <button class="setup-btn" data-setup="planner">
+                        <span class="setup-icon">📅</span>
+                        <span>Open Planner</span>
+                    </button>
+                    <button class="setup-btn" data-setup="notes">
+                        <span class="setup-icon">📝</span>
+                        <span>View Notes</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
     <script src="script.js"></script>
 </body>
 
