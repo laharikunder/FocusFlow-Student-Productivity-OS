@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Summarizer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>PDF Summarizer</h1>
+      <label class="toggle-switch">
+        <input type="checkbox" id="dark-mode-toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+    
+    <div class="upload-box">
+      <input type="file" id="pdf-upload" accept=".pdf">
+      <label for="pdf-upload">Choose PDF</label>
+      <p id="file-name"></p>
+    </div>
+    
+    <div class="summary-box">
+      <h2>Summary</h2>
+      <div id="summary-text">Upload a PDF to generate summary.</div>
+      <button id="download-btn" class="hidden">Download Summary</button>
+      <div id="loading" class="hidden"></div>
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
