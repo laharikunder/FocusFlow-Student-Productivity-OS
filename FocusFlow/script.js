@@ -360,18 +360,20 @@ const FocusFlow = {
     },
 
     navigateToPage(page) {
-        // For now, we'll show a placeholder message
-        // In a full implementation, this would load different page components
-        this.showNotification(`Navigating to ${page.charAt(0).toUpperCase() + page.slice(1)} page...`, 'info', 3000);
+        // Navigate to actual page files
+        const pageUrls = {
+            dashboard: 'dashboard.html',
+            planner: 'planner.html',
+            notes: 'notes.html'
+        };
         
-        // Simulate page navigation
-        console.log(`Navigating to: ${page}`);
-        this.currentPage = page;
-        
-        // Update URL without page refresh
-        if (history.pushState) {
-            history.pushState(null, null, `#${page}`);
+        if (pageUrls[page]) {
+            window.location.href = pageUrls[page];
+        } else {
+            this.showNotification(`${page.charAt(0).toUpperCase() + page.slice(1)} page coming soon!`, 'info', 3000);
         }
+        
+        this.currentPage = page;
     },
 
     showNotification(message, type = 'info', duration = 3000) {
