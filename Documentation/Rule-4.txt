@@ -1,7 +1,7 @@
 Rule 4 – "Make it Shareable."
 
 Implementation is available in the feature branch:
-- https://github.com/HackSomeThorns-2025/FocusForge/tree/feature/pdf-parser
+- https://github.com/HackSomeThorns-2025/FocusForge/tree/main/FocusFlow
 
 Description:
 This feature allows users to upload a PDF, summarize it and download that summary as a text file.
