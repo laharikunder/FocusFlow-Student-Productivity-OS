@@ -1,0 +1,15 @@
+Rule 4 – "Make it Shareable."
+
+Implementation is available in the feature branch:
+- https://github.com/HackSomeThorns-2025/FocusForge/tree/feature/pdf-parser
+
+Description:
+This feature allows users to upload a PDF, summarize it and download that summary as a text file.
+
+Location in App:
+Accessible from the PDF Summarizer interface (Home page), after uploading a PDF file and viewing its summary.
+
+Components Added:
+- A "Download Summary" button below the summary section.
+- Gradient UI.
+
