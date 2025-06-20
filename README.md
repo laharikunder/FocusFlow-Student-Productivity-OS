@@ -66,9 +66,13 @@ localStorage API – to make it offline-friendly
 Built by a squad of code warriors on a mission to make studying *less painful* :
 
  -> Lahari V Kunder – UI/UX vibes + dashboard layout
- -> Manya Kalkur – Notes master + sticky chaos handler  
- -> Nishtha – PDF Summarizer  
+ 
+ -> Manya Kalkur – Notes master + sticky chaos handler
+ 
+ -> Nishtha – PDF Summarizer
+ 
  -> Rishitha Kantevari – Pomodoro Timer
+ 
  -> Chinmayi Upadhyay – Normal Timer for long focusing hours    
 
 ---
