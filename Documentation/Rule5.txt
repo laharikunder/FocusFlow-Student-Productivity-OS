@@ -1,0 +1,14 @@
+Feature being tested:
+Dark Mode Toggle
+
+Type of test implemented:
+Frontend interaction test (manual)
+
+Test file path:
+FocusFlow/tests/dark-mode-test.html
+
+Instructions to run the test:
+1. Open the file in a browser.
+2. Toggle the checkbox labeled "Dark Mode".
+3. The background or UI should switch to dark mode.
+4. Refresh the page to confirm that dark mode is remembered using localStorage.

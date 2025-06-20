@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dark Mode Toggle Test</title>
+  <link rel="stylesheet" href="../FocusFlow/style.css" />
+</head>
+<body>
+  <label for="theme-toggle">🌙 Dark Mode</label>
+  <input type="checkbox" id="theme-toggle" />
+
+  <script>
+    const toggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      body.classList.add("dark");
+      toggle.checked = true;
+    }
+
+    // Toggle and store preference
+    toggle.addEventListener("change", () => {
+      body.classList.toggle("dark");
+      localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>
