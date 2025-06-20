@@ -119,9 +119,9 @@
                     <div class="feature-icon">
                         <div class="icon-calendar"></div>
                     </div>
-                    <h3>Visual Planner</h3>
-                    <p>Weekly calendar with progress heatmap and activity tracking</p>
-                    <button class="feature-btn" data-page="planner">View Planner</button>
+                    <h3>PDF Summarizer</h3>
+                    <p>Smart document reader with summary extraction and keyword tracking</p>
+                    <button class="feature-btn" data-page="pdfparser">View Summarizer</button>
                 </div>
                 <div class="feature-card animate-on-scroll delay-2">
                     <div class="feature-icon">
@@ -137,7 +137,11 @@
                     </div>
                     <h3>Focus Mode</h3>
                     <p>Distraction-free environment with gentle nudges and recovery alerts</p>
-                    <button class="feature-btn" data-page="focus">Enter Focus</button>
+                    <button class="feature-btn has-dropdown" data-page="focus">Enter Focus</button>
+                    <div class="timer-options hidden">
+                        <button class="feature-sub-btn" data-page="pomodorotimer">Pomodoro Timer</button>
+                        <button class="feature-sub-btn" data-page="normaltimer">Thematic Timer</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -209,9 +213,9 @@
                         <span class="setup-icon">📊</span>
                         <span>Go to Dashboard</span>
                     </button>
-                    <button class="setup-btn" data-setup="planner">
+                    <button class="setup-btn" data-setup="pdfparser">
                         <span class="setup-icon">📅</span>
-                        <span>Open Planner</span>
+                        <span>Open PDF Summarizer</span>
                     </button>
                     <button class="setup-btn" data-setup="notes">
                         <span class="setup-icon">📝</span>
