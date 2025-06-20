@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #a18cd1 0%, #fbc2eb 100%);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    transition: background 0.3s, color 0.3s;
+  }
+  body.theme-1 {
+    background: linear-gradient(to right, #1d4350, #a43931);
+  }
+  body.theme-2 {
+    background: linear-gradient(to right, #eecda3, #ef629f);
+  }
+  body.theme-3 {
+    background: linear-gradient(to right, #2c3e50, #4ca1af);
+  }
+  .dark-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  .controls button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #6c5ce7;
+    color: white;
+  }
+  #countdownDisplay {
+    font-size: 2.5em;
+    margin-top: 20px;
+  }
+  select {
+    margin-top: 10px;
+    padding: 8px;
+    font-size: 1em;
+    border-radius: 6px;
+    border: none;
+  }
+  .animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+  }
+  .falling-star {
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: white;
+    animation: fall 3s linear infinite;
+    opacity: 0.6;
+  }
+  @keyframes fall {
+    from {
+      transform: translateY(-100px);
+      opacity: 0.8;
+    }
+    to {
+      transform: translateY(110vh);
+      opacity: 0;
+    }
+  }
+  body.dark-mode {
+    background: #121212 !important;
+    color: #ffffff !important;
+  }
+  body.dark-mode select,
+  body.dark-mode button,
+  body.dark-mode label {
+    background-color: #2c2c2c !important;
+    color: white !important;
+  }
+</style>
+</head>
+<body>
+  <div class="animated-bg" id="animated-bg"></div>
+<select onchange="toggleAnimation(this.value)" style="position:absolute;bottom:20px;right:20px;padding:8px;border-radius:6px;">
+  <option value="stars">🌟 Stars</option>
+  <option value="leaves">🍃 Leaves</option>
+  <option value="bubbles">🫧 Bubbles</option>
+</select>
+  
+  <button class="dark-toggle" onclick="toggleTheme()" style="top: 20px;">🎨 Theme</button>
+  <button class="dark-toggle" onclick="document.body.classList.toggle('dark-mode')" style="top: 60px;">🕶 Dark Mode</button>
+  <div id="nudge">Let’s go! 💪</div>
+  <div id="countdownDisplay"></div>
+  <div class="controls">
+  <button onclick="startTimerManually()">▶️ Start</button>
+  <button onclick="pauseTimer()">⏸ Pause</button>
+  <button onclick="resumeTimer()">▶️ Resume</button>
+  <button onclick="resetTimer()">🔄 Reset</button>
+</div>
+<div style="margin-top: 20px;">
+  <button onclick="window.open('sticky-board.html', '_blank')" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 6px; cursor: pointer; background: #00cec9; color: white;">
+    📝 Add Notes
+  </button>
+</div>
+  <label>🎵 Background Music:
+    <select id="bgMusicSelect" onchange="playMusic(this.value)">
+  <option value="">None</option>
+  <option value="/FocusForge/FocusFlow/calming-rain-257596.mp3">🌧 Rain Sounds</option>
+  <option value="/FocusForge/FocusFlow/forest-ambience-296528.mp3">🌲 Forest Ambience</option>
+  <option value="/FocusForge/FocusFlow/waves-53479.mp3">🌊 Ocean Waves</option>
+</select>
+  </label>
+  <audio id="bgMusic" loop></audio>
+  <audio id="nudgeSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+
+  <script>
+    const nudges = [
+      "Keep going — your future self will thank you!",
+      "You're doing amazing. Stay locked in. 💪",
+      "Focus is a superpower — and you’ve got it.",
+      "Small steps today = big wins tomorrow!",
+      "You’re not alone. Keep pushing. 💥",
+      "You’ve done harder things before — keep it up."
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const minutes = parseInt(params.get('time')) || 25;
+    let remaining = minutes * 60;
+    let interval;
+    let timerStarted = false;
+    let paused = false;
+
+    function updateCountdown() {
+      const m = String(Math.floor(remaining / 60)).padStart(2, '0');
+      const s = String(remaining % 60).padStart(2, '0');
+      document.getElementById('countdownDisplay').textContent = `⏱ ${m}:${s}`;
+    }
+
+    function startTimer() {
+  interval = setInterval(() => {
+    if (!paused) {
+      remaining--;
+      updateCountdown();
+      if (remaining <= 0) {
+        clearInterval(interval);
+        alert("Time's up!");
+        window.location.href = "todo.html";
+      }
+    }
+  }, 1000);
+}
+
+
+    function pauseTimer() {
+      paused = true;
+    }
+
+    function resumeTimer() {
+      paused = false;
+    }
+
+    function resetTimer() {
+  clearInterval(interval);
+  remaining = minutes * 60;
+  updateCountdown();
+  timerStarted = false;
+  paused = false;
+  createFallingStars();
+}
+
+    function toggleTheme() {
+  const themes = ['theme-1', 'theme-2', 'theme-3'];
+  const body = document.body;
+  for (let theme of themes) {
+    if (body.classList.contains(theme)) {
+      body.classList.remove(theme);
+      const nextIndex = (themes.indexOf(theme) + 1) % themes.length;
+      body.classList.add(themes[nextIndex]);
+      return;
+    }
+  }
+  body.classList.add('theme-1');
+}
+
+    function playMusic(src) {
+      const audio = document.getElementById("bgMusic");
+      audio.src = src;
+      src ? audio.play() : audio.pause();
+    }
+
+    function showNudge() {
+  const message = nudges[Math.floor(Math.random() * nudges.length)];
+  document.getElementById("nudge").textContent = message;
+  document.getElementById("nudgeSound").play();
+}
+
+// Show a nudge when user switches tabs and comes back
+let lostFocus = false;
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    lostFocus = true;
+  } else if (lostFocus) {
+    showNudge();
+    lostFocus = false;
+  }
+});
+
+    function createFallingStars() {
+  const container = document.getElementById('animated-bg');
+  container.innerHTML = '';
+  for (let i = 0; i < 20; i++) {
+    const star = document.createElement('div');
+    star.className = 'falling-star';
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.animationDelay = (Math.random() * 5) + 's';
+    star.style.animationDuration = (3 + Math.random() * 2) + 's';
+    container.appendChild(star);
+  }
+}
+
+function toggleAnimation(type) {
+  const container = document.getElementById('animated-bg');
+  container.innerHTML = '';
+  const styleMap = {
+    stars: { width: '2px', height: '40px', background: 'white' },
+    leaves: { width: '20px', height: '20px', background: 'green', borderRadius: '50%' },
+    bubbles: { width: '15px', height: '15px', background: 'rgba(255,255,255,0.3)', borderRadius: '50%' }
+  };
+  const style = styleMap[type] || styleMap.stars;
+  for (let i = 0; i < 20; i++) {
+    const el = document.createElement('div');
+    el.style.position = 'absolute';
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animation = 'fall 4s linear infinite';
+    el.style.animationDelay = (Math.random() * 5) + 's';
+    el.style.animationDuration = (3 + Math.random() * 2) + 's';
+    Object.assign(el.style, style);
+    container.appendChild(el);
+  }
+}
+    
+
+    updateCountdown(); // Every 10 minutes
+  function startTimerManually() {
+  if (!timerStarted) {
+    timerStarted = true;
+    createFallingStars();
+    startTimer();
+    setInterval(showNudge, 600000); // Every 10 minutes
+  }
+}
+    
+  </script>
+</body>
+</html>
