@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pomodoro Timer</title>
+  <link rel="stylesheet" href="pomodoro.css"/>
+</head>
+<body>
+  <div class="dark-mode-toggle">
+    <label class="switch">
+      <input type="checkbox" id="darkModeToggle"/>
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h1>Pomodoro Timer</h1>
+
+      <label for="pomodoroCount">Pomodoros:</label>
+      <input type="number" id="pomodoroCount" min="1" max="12" value="1"/>
+
+      <div class="timer-circle">
+        <svg>
+          <circle cx="100" cy="100" r="90"></circle>
+          <circle id="progressCircle" cx="100" cy="100" r="90"></circle>
+        </svg>
+        <div id="time">25:00</div>
+      </div>
+
+      <div class="controls">
+        <button id="start">Start</button>
+        <button id="pause">Pause</button>
+        <button id="reset">Reset</button>
+      </div>
+
+      <div id="status">Focus</div>
+      <div id="sessionCount">Sessions Completed: 0</div>
+    </div>
+  </div>
+
+
+
+<div class="notes-button-container">
+  <button onclick="window.open('sticky-board.html', '_blank')" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 6px; cursor: pointer; background: #00cec9; color: white;">
+    📝 Add Notes
+  </button>
+</div>
+
+  <script src="pomodoro.js"></script>
+</body>
+</html>

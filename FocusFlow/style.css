@@ -616,6 +616,47 @@ input:checked + .switch .ball {
     box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
 }
 
+.timer-options {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;   
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.feature-sub-btn {
+  padding: 6px 12px;
+  width: fit-content;
+  min-width: 200px;
+  border: none;
+  border-radius: 6px;
+  background-color: #665fb3;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+}
+
+.feature-sub-btn:hover {
+  background-color: #4e45a3;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* About Section */
 .about {
     padding: 100px 20px;

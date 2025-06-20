@@ -43,11 +43,18 @@ const FocusFlow = {
         }
 
         // Feature buttons
-        const featureBtns = document.querySelectorAll('.feature-btn');
+        const featureBtns = document.querySelectorAll('.feature-btn, .feature-sub-btn');
         featureBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const page = e.target.getAttribute('data-page');
-                this.navigateToPage(page);
+                if (btn.classList.contains('has-dropdown')) {
+                    const dropdown = btn.nextElementSibling;
+                    if (dropdown && dropdown.classList.contains("timer-options")) {
+                        dropdown.classList.toggle("hidden");
+                    }
+                } else {
+                    const page = e.target.getAttribute('data-page');
+                    this.navigateToPage(page);
+                }
             });
         });
 
@@ -363,8 +370,10 @@ const FocusFlow = {
         // Navigate to actual page files
         const pageUrls = {
             dashboard: 'dashboard.html',
-            planner: 'planner.html',
-            notes: 'notes.html'
+            pdfparser: 'pdf-parser.html',
+            notes: 'sticky-board.html',
+            normaltimer: 'normal-timer.html',
+            pomodorotimer: 'pomodoro.html'
         };
         
         if (pageUrls[page]) {
