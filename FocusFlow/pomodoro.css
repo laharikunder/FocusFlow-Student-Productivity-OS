@@ -1,10 +1,10 @@
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f4f4f4;
+  background: linear-gradient(300deg, rgb(11, 1, 51), rgb(45, 146, 146), rgb(7, 1, 53));
   color: #333;
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
 .container {
@@ -88,9 +88,10 @@ circle:first-child {
 }
 
 .dark-mode {
-  background-color: #121212;
+  background: linear-gradient(135deg, #2d1b69 0%, #11052c 50%, #0f0c29 100%);
   color: #eee;
 }
+
 
 .dark-mode .card {
   background-color: #1f1f1f;
