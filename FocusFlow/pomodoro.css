@@ -115,35 +115,31 @@ circle:first-child {
   z-index: 1000;
 }
 
-.theme-toggle-switch input {
-  display: none;
-}
-
-.switch {
-  background-color: #6f1883;
-  width: 60px;
-  height: 30px;
+.theme-toggle-switch {
+  position: relative;
+  width: 70px;
+  height: 34px;
+  background-color: #6f1883; /* purple by default */
   border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 6px;
   box-sizing: border-box;
-  position: relative;
   cursor: pointer;
   transition: background-color 0.4s ease;
 }
 
-.switch .icon {
-  font-size: 16px;
+.theme-toggle-switch .icon {
+  font-size: 18px;
   z-index: 3;
   pointer-events: none;
 }
 
-.switch .ball {
+.theme-toggle-switch .ball {
   position: absolute;
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   background-color: white;
   border-radius: 50%;
   top: 2px;
@@ -152,12 +148,12 @@ circle:first-child {
   z-index: 2;
 }
 
-input:checked + .switch {
-  background-color: #38bdf8;
+body.light-mode .theme-toggle-switch {
+  background-color: #38bdf8; /* light mode blue */
 }
 
-input:checked + .switch .ball {
-  transform: translateX(30px);
+body.light-mode .theme-toggle-switch .ball {
+  transform: translateX(36px);
 }
 
 /* Dark Mode */
@@ -174,5 +170,6 @@ input:checked + .switch .ball {
 }
 
 .dark-mode #progressCircle {
-  stroke: #c084fc; /* lighter purple for dark mode */
+  stroke: #c084fc;
 }
+
