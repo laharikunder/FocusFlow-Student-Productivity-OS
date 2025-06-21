@@ -9,16 +9,25 @@
 </head>
 <body>
   <button class="fab" onclick="openNoteModal()">+</button>
-  <button class="top-btn" style="top: 1rem; left: 1rem;" onclick="toggleDarkMode()">🌓</button>
-  <button class="top-btn" style="top: 1rem; right: 8rem;" onclick="clearAllNotes()">🧹 Clear All</button>
-  <div class="tag-filter-dropdown top-btn" style="top: 1rem; right: 4.5rem;">
+  <div class="theme-toggle-switch" style="top: 1rem; right: 1rem;">
+    <label>
+     <input type="checkbox" id="themeToggle" onchange="toggleDarkMode()" />
+     <div class="switch">
+       <span class="icon">☀️</span>
+        <span class="icon">🌙</span>
+        <div class="ball"></div>
+      </div>
+   </label>
+  </div>
+<button class="top-btn" style="top: 1rem; right: 10.5rem;" onclick="clearAllNotes()">🧹 Clear</button>
+  <div class="tag-filter-dropdown top-btn" style="top: 1rem; right: 5.5rem;">
     <button onclick="toggleTagDropdown()">🔖 Tags</button>
     <div id="tagDropdown" class="tag-dropdown-content">
       <input type="text" id="tagSearchInput" placeholder="Search tag (e.g. #todo)" onkeydown="manualTagSearch(event)">
       <div id="tagList" class="tag-list"></div>
     </div>
   </div>
-  <button class="top-btn" style="top: 1rem; right: 1rem;" onclick="openBackgroundModal()">🎨</button>
+  <button class="top-btn" style="top: 1rem; left: 1rem;" onclick="openBackgroundModal()">🎨</button>
   <div class="trash" id="trash">🗑️</div>
   <div class="modal" id="noteModal">
     <div class="modal-content full-editor">
