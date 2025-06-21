@@ -19,6 +19,14 @@
     padding: 20px;
     transition: background 0.3s, color 0.3s;
   }
+  .section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
   body.theme-1 {
     background: linear-gradient(to right, #1d4350, #a43931);
   }
@@ -29,28 +37,41 @@
     background: linear-gradient(to right, #2c3e50, #4ca1af);
   }
   .dark-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: #333;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1em;
-  }
-  .controls button {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 1em;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    background: #6c5ce7;
-    color: white;
-  }
-  /* Base button style */
+  background: linear-gradient(135deg, #444, #222);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 1em;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap; /* keep content on one line */
+  line-height: 1; /* tighter line spacing */
+}
+
+  .controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.controls button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  margin-right: 30px;
+  background-color: rgba(255, 255, 255, 0.1); /* semi-transparent */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); /* Safari support */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
 button {
   transition: all 0.3s ease;
   font-weight: 600;
@@ -101,23 +122,57 @@ button[onclick*="sticky-board"] {
 }
 
   
-/* Digital circular progress clock */
 #countdownDisplay {
   position: relative;
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: conic-gradient(var(--progress-color, #a29bfe) calc(var(--progress, 0) * 1%), rgba(255, 255, 255, 0.1) 0%);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   font-size: 2.5em;
   font-weight: bold;
-  transition: background 0.3s ease;
-  margin-top: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  animation: pulseGlow 2.5s ease-in-out infinite;
 }
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 8px rgba(162, 155, 254, 0.3), 0 0 16px rgba(162, 155, 254, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(162, 155, 254, 0.6), 0 0 40px rgba(162, 155, 254, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(162, 155, 254, 0.3), 0 0 16px rgba(162, 155, 254, 0.2);
+  }
+}
+
+/* Rotate animation for outer ring */
+@keyframes rotateRing {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ringPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(162, 155, 254, 0.2), 0 0 20px rgba(162, 155, 254, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(162, 155, 254, 0.5), 0 0 40px rgba(162, 155, 254, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(162, 155, 254, 0.2), 0 0 20px rgba(162, 155, 254, 0.3);
+  }
+}
+
 
 #countdownDisplay::before {
   content: '';
@@ -125,7 +180,7 @@ button[onclick*="sticky-board"] {
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
@@ -202,7 +257,28 @@ button[onclick*="sticky-board"] {
   50% { opacity: 0; }
   100% { opacity: 1; }
 }
+.top-buttons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: row; /* ← Changed from column to row */
+  gap: 12px; /* Space between buttons */
+}
 
+.timer-ring-wrapper {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: rotateRing 10s linear infinite;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #a29bfe, #74b9ff, #a29bfe); 
+  padding: 10px;
+  box-shadow: 0 0 30px rgba(162, 155, 254, 0.6);
+}
 
 
 
@@ -214,6 +290,8 @@ button[onclick*="sticky-board"] {
     font-size: 1em;
     border-radius: 6px;
     border: none;
+    background-color: #111;    
+    color: white;
   }
   .animated-bg {
     position: fixed;
@@ -260,7 +338,17 @@ button[onclick*="sticky-board"] {
 }
 
 #nudge {
+  position: absolute;
+  top: 100px;
+  font-size: 1.1em;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 8px 16px;
+  z-index: 10;
   animation: fadeBounce 3s ease-in-out infinite;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes fadeBounce {
@@ -277,17 +365,100 @@ button[onclick*="sticky-board"] {
     transform: translateY(0);
   }
 }
+.top-left {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.top-right {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
 
   body.dark {
     background: linear-gradient(135deg, #2d1b69 0%, #11052c 50%, #0f0c29 100%) !important;
     color: #ffffff !important;
   }
-  body.dark select,
-  body.dark button,
-  body.dark label {
-    background-color: #2c2c2c !important;
+  body.dark select {
+    
     color: white !important;
   }
+  body.dark button,
+  body.dark label {
+    
+    color: white !important;
+  }
+  .theme-toggle-switch {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+
+
+.switch {
+  background-color: #6f1883;
+  width: 60px;
+  height: 30px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+}
+
+.switch .icon {
+  font-size: 16px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.switch .ball {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.4s ease;
+  z-index: 2;
+}
+
+input:checked + .switch {
+  background-color: #38bdf8;
+}
+
+input:checked + .switch .ball {
+  transform: translateX(30px);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.theme-toggle-switch input[type="checkbox"] {
+  display: none;
+}
+body.sun-theme {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(300deg, rgb(11, 1, 51), rgb(45, 146, 146), rgb(7, 1, 53));
+  color: #ffffff;
+  overflow-x: hidden;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+
 </style>
 </head>
 <body>
@@ -298,17 +469,35 @@ button[onclick*="sticky-board"] {
   <option value="bubbles">🫧 Bubbles</option>
 </select>
   
-  <button class="dark-toggle" onclick="toggleTheme()" style="top: 20px;">🎨 Theme</button>
-  <button class="dark-toggle" onclick="document.body.classList.toggle('dark')" style="top: 60px;">🕶 Dark Mode</button>
+  
+<div class="top-left">
+  <button class="dark-toggle" onclick="toggleTheme()">🎨 Theme</button>
+</div>
+
+
+<div class="top-right">
+  <div class="theme-toggle-switch">
+                <input type="checkbox" id="theme-toggle">
+                <label for="theme-toggle" class="switch">
+                    <span class="icon sun">☀️</span>
+                    <span class="icon moon">🌙</span>
+                    <span class="ball"></span>
+                </label>
+            </div>
+</div>
+
+
   <div id="nudge">Let’s go! 💪</div>
+  <div class="timer-ring-wrapper">
   <div id="countdownDisplay">
     <span id="timeText">⏱ 25:00</span>
+  </div>
   </div>
   <div id="timerStatus">
     <span id="pauseDot" class="statusDot" style="display:none;"></span>
     <span id="runDot" class="statusDot" style="display:none;"></span>
     <span id="finishDot" class="statusDot" style="display:none;"></span>
-    <span id="statusText" class="paused">Paused</span>
+    <span id="statusText" ></span>
   </div>
 
   
@@ -320,11 +509,12 @@ button[onclick*="sticky-board"] {
 
 
 </div>
-<div style="margin-top: 20px;">
+<div class="section" >
   <button onclick="window.open('sticky-board.html', '_blank')" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 6px; cursor: pointer; background: #00cec9; color: white;">
     📝 Add Notes
   </button>
 </div>
+<div class="section">
   <label>🎵 Background Music:
     <select id="bgMusicSelect" onchange="playMusic(this.value)">
   <option value="">None</option>
@@ -333,6 +523,7 @@ button[onclick*="sticky-board"] {
   <option value="/FocusForge/FocusFlow/waves-53479.mp3">🌊 Ocean Waves</option>
 </select>
   </label>
+  </div>
   <audio id="bgMusic" loop></audio>
   <audio id="nudgeSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
 
@@ -361,9 +552,22 @@ button[onclick*="sticky-board"] {
     const totalSeconds = minutes * 60;
     const progress = 1 - remaining / totalSeconds;
     document.getElementById('countdownDisplay').style.setProperty('--progress', progress * 100);
+    document.getElementById('countdownDisplay').style.setProperty('--progress-color', '#3498db');
+
 }
-
-
+const checkbox = document.getElementById('theme-toggle');
+  checkbox.addEventListener('change', () => {
+  const body = document.body;
+  if (checkbox.checked) {
+    // Moon clicked → Enable dark mode
+    body.classList.add('dark');
+    body.classList.remove('sun-theme');
+  } else {
+    // Sun clicked → Enable sun theme
+    body.classList.remove('dark');
+    body.classList.add('sun-theme');
+  }
+});
 
 
     function startTimer() {
@@ -437,6 +641,7 @@ button[onclick*="sticky-board"] {
     function toggleTheme() {
   const themes = ['theme-1', 'theme-2', 'theme-3'];
   const body = document.body;
+  body.classList.remove('dark', 'sun-theme');
   for (let theme of themes) {
     if (body.classList.contains(theme)) {
       body.classList.remove(theme);
@@ -512,6 +717,7 @@ function toggleAnimation(type) {
     createFallingStars();
     startTimer();
     setInterval(showNudge, 600000);
+     showNudge();
     document.getElementById("statusText").textContent = "Running";
     document.getElementById("statusText").className = "running";
     document.getElementById("runDot").style.display = "inline-block";
