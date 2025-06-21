@@ -207,30 +207,55 @@ function closeModals(){
 function changeBackgroundColor(color){
   const isDark=body.classList.contains('dark');
   const finalColor=isDark&&darkModeBackgrounds[color]?darkModeBackgrounds[color]:color;
-  body.style.background=finalColor;
-  body.style.backgroundImage='';
+  body.style.backgroundImage = '';
+  body.style.background = color;
+  body.classList.remove('has-custom-bg');
+  body.classList.add('has-custom-bg');
   closeModals();
 }
 
-function setAestheticBackground(theme){
-  const themes={
-    forest:{img:'url(img/rainy-forest.jpg)'},
-    beach:{img:'url(img/beach.jpg)'},
-    fireplace:{img:'url(img/fireplace.jpg)'}
+function setAestheticBackground(theme) {
+  const themes = {
+    forest: 'url(img/rainy-forest.jpg)',
+    beach: 'url(img/beach.jpg)',
+    fireplace: 'url(img/fireplace.jpg)'
   };
-  const selected=themes[theme];
-  if(!selected)return;
-  body.style.backgroundImage=selected.img;
+  const selected = themes[theme];
+  if (!selected) return;
+
+  body.classList.add('has-custom-bg');
+  body.style.background = 'none';
+  body.style.backgroundImage = selected;
+  body.style.backgroundSize = 'cover';
+  body.style.backgroundPosition = 'center';
+  body.style.animation = 'none';
   closeModals();
 }
 
 function uploadBackground(event){
-  const file=event.target.files[0];
-  if(file){
-    const reader=new FileReader();
-    reader.onload=function(e){body.style.backgroundImage=`url(${e.target.result})`;};
-  reader.readAsDataURL(file);closeModals();
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const url = `url(${e.target.result})`;
+      body.classList.add('has-custom-bg');
+
+      body.style.background = 'none';
+      body.style.animation = 'none';
+      body.style.backgroundImage = url;
+      body.style.backgroundSize = 'cover';
+      body.style.backgroundRepeat = 'no-repeat';
+      body.style.backgroundPosition = 'center';
+    };
+    reader.readAsDataURL(file);
+    closeModals();
   }
+}
+
+function resetBackgroundToDefault() {
+  body.classList.remove('has-custom-bg');
+  body.style.background = '';
+  body.style.backgroundImage = '';
 }
 
 function downloadAsPDF() {
@@ -262,6 +287,8 @@ function downloadAsPDF() {
 function toggleDarkMode() {
   body.classList.toggle('dark');
   updateNoteColorsForTheme();
+  const toggleInput = document.getElementById('themeToggle');
+  if (toggleInput) toggleInput.checked = body.classList.contains('dark');
 }
 
 function updateNoteColorsForTheme() {
@@ -363,7 +390,7 @@ function togglePin(note) {
 }
 
 function highlightHashtags(text) {
-  return text.replace(/(#\w+)/g,'<span class="hashtag">$1</span>');
+  return text.replace(/(?<!["=])(#\w+)/g, '<span class="hashtag">$1</span>');
 }
 
 function extractTagsFromNote(note) {
@@ -466,9 +493,34 @@ function saveNotesToStorage() {
 
 function loadNotesFromStorage() {
   const stored = localStorage.getItem('sticky-notes');
-  if (!stored) return;
+  const notes = stored ? JSON.parse(stored) : [];
 
-  const notes = JSON.parse(stored);
+  if (notes.length === 0) {
+    // Show default welcome note
+    const welcome = document.createElement('div');
+    welcome.className = 'note';
+    welcome.innerHTML = highlightHashtags("Hey Welcome to notes. Click on the add (+) button to add a new note");
+
+    welcome.style.backgroundColor = getRandomColor();
+    welcome.style.color = body.classList.contains('dark') ? '#ffffff' : '#000000';
+    welcome.style.width = '240px';
+    welcome.style.height = 'auto';
+    welcome.style.padding = '1rem';
+
+    // Centered position
+    const centerX = window.innerWidth / 2 - 120;
+    const centerY = window.innerHeight / 2 - 60;
+    welcome.style.left = `${centerX}px`;
+    welcome.style.top = `${centerY}px`;
+
+    attachEditButton(welcome);
+    makeDraggable(welcome);
+    body.appendChild(welcome);
+    extractTagsFromNote(welcome);
+    return;
+  }
+
+  // Otherwise, load saved notes
   notes.forEach(data => {
     const note = document.createElement('div');
     note.className = 'note';
@@ -590,4 +642,9 @@ document.getElementById('noteEditor').addEventListener('keydown', function (e) {
   }
 });
 
-window.addEventListener('DOMContentLoaded', loadNotesFromStorage);
+window.addEventListener('DOMContentLoaded', () => {
+  loadNotesFromStorage();
+  const isDark = body.classList.contains('dark');
+  const toggleInput = document.getElementById('themeToggle');
+  if (toggleInput) toggleInput.checked = isDark;
+});

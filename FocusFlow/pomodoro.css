@@ -1,10 +1,10 @@
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f4f4f4;
+  background: linear-gradient(300deg, rgb(11, 1, 51), rgb(45, 146, 146), rgb(7, 1, 53));
   color: #333;
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
 .container {
@@ -71,24 +71,30 @@ circle:first-child {
   z-index: 1;
 }
 
-.controls button {
-  margin: 0.3rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
+/* === BUTTON STYLING (from main site) === */
+.controls button,
+#makeNotesBtn {
+  padding: 1rem 2rem;
   border: none;
-  background-color: #3498db;
-  color: white;
-  border-radius: 5px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
 }
 
-.controls button:hover {
-  background-color: #2980b9;
+.controls button:hover,
+#makeNotesBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
 }
 
+/* === DARK MODE === */
 .dark-mode {
-  background-color: #121212;
+  background: linear-gradient(135deg, #2d1b69 0%, #11052c 50%, #0f0c29 100%);
   color: #eee;
 }
 
@@ -100,72 +106,61 @@ circle:first-child {
   stroke: #4da8da;
 }
 
-.dark-mode-toggle {
+/* === TOGGLE SWITCH FROM MAIN PAGE === */
+.theme-toggle-switch {
   position: absolute;
   top: 20px;
   right: 20px;
+  z-index: 1000;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 20px;
-}
-
-.switch input {
+.theme-toggle-switch input {
   display: none;
 }
 
-.slider {
-  position: absolute;
+.switch {
+  background-color: #6f1883;
+  width: 60px;
+  height: 30px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  box-sizing: border-box;
+  position: relative;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 20px;
+  transition: background-color 0.4s ease;
 }
 
-.slider:before {
+.switch .icon {
+  font-size: 16px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.switch .ball {
   position: absolute;
-  content: "";
-  height: 14px;
-  width: 14px;
-  left: 3px;
-  bottom: 3px;
+  width: 26px;
+  height: 26px;
   background-color: white;
-  transition: 0.4s;
   border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.4s ease;
+  z-index: 2;
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
+.theme-toggle-switch input:checked + .switch {
+  background-color: #38bdf8;
 }
 
-input:checked + .slider:before {
-  transform: translateX(20px);
+.theme-toggle-switch input:checked + .switch .ball {
+  transform: translateX(30px);
 }
+
+/* Optional (if notes button needs spacing) */
 .notes-button-container {
   margin-top: 0px;
   text-align: center;
-}
-
-#makeNotesBtn {
-  background-color: #0077cc;
-  color: white;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin-top: 0px;
-}
-
-#makeNotesBtn:hover {
-  background-color: #005fa3;
 }
