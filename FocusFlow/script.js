@@ -1,18 +1,23 @@
-const toggle = document.getElementById("theme-toggle");
-const body = document.body;
 
-// Toggle theme
-toggle.addEventListener("change", () => {
-  body.classList.toggle("dark");
-  localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
-});
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('theme-toggle');
+  const body = document.body;
 
-// Load saved theme
-window.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    body.classList.add("dark");
-    toggle.checked = true;
+  // Load saved theme or use system preference
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+
+  body.classList.toggle('dark', isDark);
+  if (toggle) toggle.checked = isDark;
+
+  // Toggle handler
+  if (toggle) {
+    toggle.addEventListener('change', () => {
+      const isDarkNow = toggle.checked;
+      body.classList.toggle('dark', isDarkNow);
+      localStorage.setItem('theme', isDarkNow ? 'dark' : 'light');
+    });
   }
 });
 
@@ -260,8 +265,8 @@ const FocusFlow = {
             case 'dashboard':
                 this.navigateToPage('dashboard');
                 break;
-            case 'planner':
-                this.navigateToPage('planner');
+            case 'pdfparser':
+                this.navigateToPage('pdfparser');
                 break;
             case 'notes':
                 this.navigateToPage('notes');
