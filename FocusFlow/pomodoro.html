@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pomodoro Timer</title>
-  <link rel="stylesheet" href="pomodoro.css"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <div class="dark-mode-toggle">
@@ -43,11 +43,27 @@
 
 
 <div class="notes-button-container">
-  <button onclick="window.open('sticky-board.html', '_blank')" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 6px; cursor: pointer; background: #00cec9; color: white;">
-    📝 Add Notes
+  <button id="makeNotesBtn">
+    📝 Make Notes
   </button>
 </div>
+<div class="dark-mode-toggle">
+  <div class="theme-toggle-switch" id="themeToggle">
+    <span class="icon">☀️</span>
+    <span class="icon">🌙</span>
+    <div class="ball"></div>
+  </div>
+</div>
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
 
-  <script src="pomodoro.js"></script>
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    body.classList.toggle('dark-mode');
+  });
+</script>
+
+  <script src="app.js"></script>
 </body>
 </html>
