@@ -125,7 +125,7 @@ body.dark {
   display: none;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
   z-index: 10001;
@@ -226,7 +226,7 @@ body.dark .editor-area {
 }
 
 body.dark .modal-content {
-  background-color: #1e1e1e;
+  background-color: #010101;
   color: #ffffff;
   border: 1px solid #444;
 }
@@ -287,7 +287,7 @@ body.dark .toolbar button.active {
   top: 4px;
   left: 4px;
   background: gold;
-  color: black;
+  color: rgb(9, 9, 9);
   border: none;
   font-size: 0.8rem;
   border-radius: 4px;
@@ -483,7 +483,7 @@ body.dark #backgroundModal .modal-content input {
 .toolbar button,
 .toolbar select,
 .modal-content button {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(45deg, #3a7bd5, #00d2ff);
   color: white;
   border: none;
   font-weight: 600;
@@ -492,6 +492,21 @@ body.dark #backgroundModal .modal-content input {
   font-size: 0.95rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+  width: 4.2rem;
+  height: 3.2rem;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.toolbar button,
+.toolbar select,
+.modal-content button {
+  border-radius: 999px;
+  min-width: 100px;
+}
+
+.theme {
+  font-size: 1.5rem;
 }
 
 .fab {
@@ -518,7 +533,7 @@ body.dark .tag-filter-dropdown button,
 body.dark .toolbar button,
 body.dark .toolbar select,
 body.dark .toolbar input[type="color"] {
-  background: linear-gradient(135deg, #2c3e50, #34495e);
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
   color: white;
   border: none;
 }
@@ -533,7 +548,10 @@ body.dark .toolbar button:hover {
 /* Pin and Edit Buttons */
 .pin-btn,
 .edit-btn {
-  background: #8b5cf6;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  width: 40px;
+  height: 40px;
   color: white;
   font-weight: bold;
   transition: background 0.3s ease;
@@ -541,11 +559,10 @@ body.dark .toolbar button:hover {
 
 .pin-btn:hover,
 .edit-btn:hover {
-  background: #ec4899;
+  background: #8b888a;
 }
 
-/* --- Themed Top Buttons (🌓 🎨 🧹 etc) --- */
-.top-btn,
+/* --- Toggle --- */
 .theme-toggle {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
@@ -562,7 +579,6 @@ body.dark .toolbar button:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.top-btn:hover,
 .theme-toggle:hover {
   background: linear-gradient(135deg, #8b5cf6, #ec4899);
   transform: translateY(-2px);
@@ -570,13 +586,11 @@ body.dark .toolbar button:hover {
 }
 
 /* Dark Mode Styling for Top Buttons */
-body.dark .top-btn,
 body.dark .theme-toggle {
-  background: linear-gradient(135deg, #2c3e50, #34495e);
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
   color: white;
 }
 
-body.dark .top-btn:hover,
 body.dark .theme-toggle:hover {
   background: linear-gradient(135deg, #6c5ce7, #a29bfe);
 }

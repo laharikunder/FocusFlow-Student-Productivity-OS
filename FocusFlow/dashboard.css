@@ -687,7 +687,7 @@ input:checked + .switch .ball {
 .action-group {
   display: flex;
   flex-direction: column;
-  align-items: center; /* ✅ This ensures everything under this stays centered */
+  align-items: center;
   gap: 8px;
 }
 
@@ -704,15 +704,13 @@ input:checked + .switch .ball {
   padding: 10px 20px;
   border-radius: 12px;
 
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
   color: white;
   font-weight: 500;
   font-size: 1.1rem;
   cursor: pointer;
 }
 
-/* ✅ Updated to make the dropdown visible and styled properly */
+/* Updated to make the dropdown visible and styled properly */
 .timer-options {
   display: flex;
   flex-direction: column;
@@ -753,7 +751,7 @@ input:checked + .switch .ball {
   pointer-events: none;
 }
 
-/* ✅ Hidden class for toggle logic */
+/* Hidden class for toggle logic */
 .hidden {
   display: none;
 }

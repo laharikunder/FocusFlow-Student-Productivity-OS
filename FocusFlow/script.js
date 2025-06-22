@@ -42,8 +42,24 @@ const FocusFlow = {
             });
         }
 
-        // Feature buttons
+        //Feature buttons
+        // const featureBtns = document.querySelectorAll('.feature-btn, .feature-sub-btn');
+        // featureBtns.forEach(btn => {
+        //     btn.addEventListener('click', (e) => {
+        //         if (btn.classList.contains('has-dropdown')) {
+        //             const dropdown = btn.nextElementSibling;
+        //             if (dropdown && dropdown.classList.contains("timer-options")) {
+        //                 dropdown.classList.toggle("hidden");
+        //             }
+        //         } else {
+        //             const page = e.target.getAttribute('data-page');
+        //             this.navigateToPage(page);
+        //         }
+        //     });
+        // });
+
         const featureBtns = document.querySelectorAll('.feature-btn, .feature-sub-btn');
+
         featureBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 if (btn.classList.contains('has-dropdown')) {
@@ -53,10 +69,25 @@ const FocusFlow = {
                     }
                 } else {
                     const page = e.target.getAttribute('data-page');
-                    this.navigateToPage(page);
+
+                    // Intercept Pomodoro only — show intro popup instead of navigating
+                    if (page === "pomodorotimer") {
+                        e.preventDefault();
+                        if (typeof openPomodoroInfo === "function") {
+                            openPomodoroInfo();
+                        }
+                    } else {
+                        // For all other pages, continue normal navigation
+                        this.navigateToPage(page);
+                    }
                 }
             });
         });
+
+        // ✅ If `navigateToPage` was inside a class or module, define it globally here if needed:
+        // function navigateToPage(page) {
+        //     window.location.href = `${page}.html`;
+        // }
 
         // Modal functionality
         const modal = document.getElementById('welcomeModal');
@@ -260,8 +291,8 @@ const FocusFlow = {
             case 'dashboard':
                 this.navigateToPage('dashboard');
                 break;
-            case 'planner':
-                this.navigateToPage('planner');
+            case 'pdfparser':
+                this.navigateToPage('pdfparser');
                 break;
             case 'notes':
                 this.navigateToPage('notes');
@@ -551,7 +582,7 @@ document.addEventListener('keydown', (e) => {
 
 // Performance optimization - lazy load heavy components
 const lazyLoadComponents = () => {
-    // This would load dashboard, planner, notes components only when needed
+    // This would load dashboard, pdf-summarizer, notes components only when needed
     console.log('Lazy loading components...');
 };
 
