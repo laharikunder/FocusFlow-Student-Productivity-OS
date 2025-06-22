@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", () => {
 // Dashboard functionality
 class DashboardManager {
     constructor() {
-        this.tasks = JSON.parse(localStorage.getItem('focusflow-tasks')) || [];
+        this.tasks= JSON.parse(localStorage.getItem('focusflow-tasks')) || [];
         this.userData = JSON.parse(localStorage.getItem('focusflow-user')) || {};
         this.timerState = {
             isRunning: false,
@@ -144,13 +144,23 @@ class DashboardManager {
 
         // Add click events to Pomodoro & Normal buttons
         const subBtns = document.querySelectorAll('.feature-sub-btn');
+
         subBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const page = btn.getAttribute('data-page');
-            if (page) {
-            navigateToPage(page);
-            }
-        });
+            btn.addEventListener('click', (e) => {
+                const page = e.target.getAttribute('data-page');
+
+                if (!page) return;
+
+                if (page === "pomodorotimer") {
+                // Show popup instead of direct navigation
+                e.preventDefault();
+                if (typeof openPomodoroInfo === "function") {
+                    openPomodoroInfo();
+                }
+                } else {
+                    navigateToPage(page);
+                }
+            });
         });
         
         document.getElementById('breakTimeBtn').addEventListener('click', () => this.takeBreak());
@@ -158,7 +168,7 @@ class DashboardManager {
         document.getElementById('motivationBtn').addEventListener('click', () => this.showMotivation());
 
         // Focus mode
-        document.getElementById('exitFocusBtn').addEventListener('click', () => this.exitFocusMode());
+        // document.getElementById('exitFocusBtn').addEventListener('click', () => this.exitFocusMode());
 
         // Distraction alert
         document.getElementById('closeDistraction').addEventListener('click', () => this.closeDistractionAlert());
@@ -379,7 +389,45 @@ class DashboardManager {
         document.getElementById('todoCount').textContent = tasksByStatus.todo.length;
         document.getElementById('doingCount').textContent = tasksByStatus.doing.length;
         document.getElementById('doneCount').textContent = tasksByStatus.done.length;
+
+        this.initDragAndDrop();
     }
+
+    // createTaskElement(task) {
+    //     const taskDiv = document.createElement('div');
+    //     taskDiv.className = 'task-item';
+    //     taskDiv.draggable = true;
+    //     taskDiv.dataset.taskId = task.id;
+
+    //     const dueDateText = task.dueDate ? 
+    //         `Due: ${new Date(task.dueDate).toLocaleDateString()}` : 
+    //         'No due date';
+
+    //     taskDiv.innerHTML = `
+    //         <div class="task-priority ${task.priority}"></div>
+    //         <div class="task-title">${task.title}</div>
+    //         ${task.description ? `<div class="task-description">${task.description}</div>` : ''}
+    //         <div class="task-due-date">${dueDateText}</div>
+    //         <button class="task-delete" onclick="dashboard.deleteTask('${task.id}')" style="
+    //             position: absolute;
+    //             top: 0.5rem;
+    //             left: 0.5rem;
+    //             background: rgba(239, 68, 68, 0.2);
+    //             border: none;
+    //             color: #ef4444;
+    //             width: 20px;
+    //             height: 20px;
+    //             border-radius: 50%;
+    //             font-size: 12px;
+    //             cursor: pointer;
+    //             display: flex;
+    //             align-items: center;
+    //             justify-content: center;
+    //         ">&times;</button>
+    //     `;
+
+    //     return taskDiv;
+    // }
 
     createTaskElement(task) {
         const taskDiv = document.createElement('div');
@@ -396,7 +444,7 @@ class DashboardManager {
             <div class="task-title">${task.title}</div>
             ${task.description ? `<div class="task-description">${task.description}</div>` : ''}
             <div class="task-due-date">${dueDateText}</div>
-            <button class="task-delete" onclick="dashboard.deleteTask('${task.id}')" style="
+            <button class="task-delete" data-id="${task.id}" style="
                 position: absolute;
                 top: 0.5rem;
                 left: 0.5rem;
@@ -414,8 +462,15 @@ class DashboardManager {
             ">&times;</button>
         `;
 
+        const deleteBtn = taskDiv.querySelector('.task-delete');
+        deleteBtn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            this.deleteTask(id);
+        });
+
         return taskDiv;
     }
+
 
     initDragAndDrop() {
         let draggedTask = null;

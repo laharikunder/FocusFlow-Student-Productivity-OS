@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PDF Summarizer</title>
   <link rel="stylesheet" href="pdf-parser.css">
+  <!-- Load Buddy CSS -->
+  <link rel="stylesheet" href="buddy/buddy.css">
 </head>
 <body>
   <div class="container">
@@ -35,7 +37,29 @@
     </div>
   </div>
 
+  <!-- Include Study Buddy HTML -->
+  <div id="buddy-placeholder"></div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
   <script src="pdf-parser.js"></script>
+
+  <script>
+    fetch('buddy/buddy.html')
+        .then(res => res.text())
+        .then(html => {
+        document.getElementById("buddy-placeholder").innerHTML = html;
+
+        const script = document.createElement('script');
+        script.src = 'buddy/buddy.js';
+
+        script.onload = () => {
+            if (typeof initStudyBuddy === 'function') {
+            initStudyBuddy(); // ✅ Welcome message triggers
+            }
+        };
+
+        document.body.appendChild(script);
+        });
+    </script>
 </body>
 </html>

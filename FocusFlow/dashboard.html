@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FocusFlow Dashboard - Productivity OS</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="pomodoro-popup.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -254,6 +255,21 @@
         </div>
     </div>
 
+    <!-- Pomodoro Info Modal -->
+    <div id="pomodoro-info-popup" class="pomodoro-popup hidden">
+        <div class="pomodoro-box">
+            <h2>🍅 What is the Pomodoro Technique?</h2>
+            <p>
+            The Pomodoro Technique breaks your work into 25-minute sessions with short breaks. Stay focused, avoid burnout.
+            </p>
+            <div class="popup-buttons">
+                <button onclick="closePomodoroInfo()">Cancel</button>
+                <button onclick="goToPomodoro()">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="pomodoro-popup.js"></script>
     <script src="dashboard.js"></script>
 </body>
 </html>

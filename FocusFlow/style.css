@@ -392,6 +392,12 @@ input:checked + .switch .ball {
     align-items: center;
 }
 
+@media screen and (min-width: 768px) {
+  .hero-visual {
+    transform: translateX(-60px);
+  }
+}
+
 .productivity-mockup {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
@@ -433,6 +439,10 @@ input:checked + .switch .ball {
     height: 8px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (min-width: 768px) {
+    
 }
 
 .mockup-content {

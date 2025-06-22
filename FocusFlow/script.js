@@ -1,23 +1,18 @@
+const toggle = document.getElementById("theme-toggle");
+const body = document.body;
 
-document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.getElementById('theme-toggle');
-  const body = document.body;
+// Toggle theme
+toggle.addEventListener("change", () => {
+  body.classList.toggle("dark");
+  localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
+});
 
-  // Load saved theme or use system preference
-  const savedTheme = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
-
-  body.classList.toggle('dark', isDark);
-  if (toggle) toggle.checked = isDark;
-
-  // Toggle handler
-  if (toggle) {
-    toggle.addEventListener('change', () => {
-      const isDarkNow = toggle.checked;
-      body.classList.toggle('dark', isDarkNow);
-      localStorage.setItem('theme', isDarkNow ? 'dark' : 'light');
-    });
+// Load saved theme
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark");
+    toggle.checked = true;
   }
 });
 
@@ -47,8 +42,24 @@ const FocusFlow = {
             });
         }
 
-        // Feature buttons
+        //Feature buttons
+        // const featureBtns = document.querySelectorAll('.feature-btn, .feature-sub-btn');
+        // featureBtns.forEach(btn => {
+        //     btn.addEventListener('click', (e) => {
+        //         if (btn.classList.contains('has-dropdown')) {
+        //             const dropdown = btn.nextElementSibling;
+        //             if (dropdown && dropdown.classList.contains("timer-options")) {
+        //                 dropdown.classList.toggle("hidden");
+        //             }
+        //         } else {
+        //             const page = e.target.getAttribute('data-page');
+        //             this.navigateToPage(page);
+        //         }
+        //     });
+        // });
+
         const featureBtns = document.querySelectorAll('.feature-btn, .feature-sub-btn');
+
         featureBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 if (btn.classList.contains('has-dropdown')) {
@@ -58,10 +69,25 @@ const FocusFlow = {
                     }
                 } else {
                     const page = e.target.getAttribute('data-page');
-                    this.navigateToPage(page);
+
+                    // Intercept Pomodoro only — show intro popup instead of navigating
+                    if (page === "pomodorotimer") {
+                        e.preventDefault();
+                        if (typeof openPomodoroInfo === "function") {
+                            openPomodoroInfo();
+                        }
+                    } else {
+                        // For all other pages, continue normal navigation
+                        this.navigateToPage(page);
+                    }
                 }
             });
         });
+
+        // ✅ If `navigateToPage` was inside a class or module, define it globally here if needed:
+        // function navigateToPage(page) {
+        //     window.location.href = `${page}.html`;
+        // }
 
         // Modal functionality
         const modal = document.getElementById('welcomeModal');
@@ -556,7 +582,7 @@ document.addEventListener('keydown', (e) => {
 
 // Performance optimization - lazy load heavy components
 const lazyLoadComponents = () => {
-    // This would load dashboard, planner, notes components only when needed
+    // This would load dashboard, pdf-summarizer, notes components only when needed
     console.log('Lazy loading components...');
 };
 
