@@ -1,5 +1,3 @@
-
- 
 body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(300deg, rgb(11, 1, 51), rgb(45, 146, 146), rgb(7, 1, 53));
@@ -37,6 +35,7 @@ body {
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
 
 input[type="number"] {
   width: 60px;
@@ -183,3 +182,27 @@ body.light-mode .theme-toggle-switch .ball {
   margin-bottom: 1.5rem;
   border-radius: 12px;
 }
+/* Dark Mode Enhancements */
+.dark-mode .card {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+}
+
+.dark-mode .drop-zone {
+  border-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .summary-box {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Optional: Darker button glow on hover */
+.dark-mode .controls button:hover,
+.dark-mode #makeNotesBtn:hover {
+  box-shadow: 0 15px 40px rgba(199, 126, 234, 0.7);
+}
+
