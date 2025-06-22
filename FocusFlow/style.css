@@ -190,13 +190,27 @@ input:checked + .switch .ball {
     align-items: center;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0rem;
+  height: 60px;
+  overflow: hidden;
+}
+
+.logo-img {
+  height: 100px;
+  width: auto;
+  margin-top: 15px;
+}
+
 .logo-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-    background: linear-gradient(45deg, #8b5cf6, #ec4899);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .nav-menu {
