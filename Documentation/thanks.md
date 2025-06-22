@@ -1,5 +1,7 @@
 # 🙏 Thanks & Credits
 
+
+
 ## 👥 Team: FocusFlow
 
 -> Lahari V Kunder 
@@ -11,6 +13,8 @@
 
 ## 🛠️ Tools & Libraries Used
 
+
+
 - HTML5 🧱 – for clean, semantic structure 
 - CSS 🌬️ – for stylish components
 - JavaScript (Vanilla) ⚡ – because simplicity is power 
@@ -19,7 +23,11 @@
 - GitHub 🚀 – team coordination central
 
 
+
+
 ## 🗣️ Shoutout to IECSE for organizing and hosting the platform that made this project possible.
+
+
 
 
 ## ❤️ Thank You!
