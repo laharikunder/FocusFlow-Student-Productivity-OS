@@ -4,11 +4,11 @@
 
 ## 👥 Team: FocusFlow
 
--> Lahari V Kunder 
--> Chinmayi Upadhyay
--> Manya Kalkur 
--> Nishtha Gupta
--> Rishitha Kantevari 
+- Lahari V Kunder 
+- Chinmayi Upadhyay
+- Manya Kalkur 
+- Nishtha Gupta
+- Rishitha Kantevari 
 
 
 ## 🛠️ Tools & Libraries Used
