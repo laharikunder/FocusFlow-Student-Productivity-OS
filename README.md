@@ -49,6 +49,7 @@ JavaScript (Vanilla) – because simplicity is power
 
 localStorage API – to make it offline-friendly
 
+pdf.js – to turn your lecture dumps into bullet points
 
 
 <div align="center">
@@ -79,7 +80,7 @@ Built by a squad of code warriors on a mission to make studying *less painful* :
 
 ## Dependencies
 ## 🧩 Dependencies
-We avoided external dependencies to keep the app lightweight, fully offline-capable, and under our complete control.
+- [pdf.js](https://mozilla.github.io/pdf.js/)
 
 ---
 ## Workflow
