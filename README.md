@@ -35,7 +35,7 @@ git clone https://github.com/HackSomeThorns-2025/FocusForge.git
 cd FocusForge
 
 ### 3. Open the project
-Just double-click index.html
+Right click on index.html and click on Show Preview to open the browser
 
 ---
 
@@ -66,28 +66,31 @@ pdf.js – to turn your lecture dumps into bullet points
 
 Built by a squad of code warriors on a mission to make studying *less painful* :
 
- -> Rishitha Kantevari – Pomodoro + productivity logic  
- -> Manya Kalkur – Notes master + sticky chaos handler  
- -> Nishtha – Summarizer + PDF parser  
- -> Lahari V Kunder – UI/UX vibes + dashboard layout  
- -> Chinmayi Upadhyay – Integration czar + deploy flow   
+ -> Lahari V Kunder – UI/UX vibes + dashboard layout
+ 
+ -> Manya Kalkur – Notes master + sticky chaos handler
+ 
+ -> Nishtha – PDF Summarizer
+ 
+ -> Rishitha Kantevari – Pomodoro Timer
+ 
+ -> Chinmayi Upadhyay – Normal Timer for long focusing hours    
 
 ---
 
 ## Dependencies
 ## 🧩 Dependencies
 - [pdf.js](https://mozilla.github.io/pdf.js/)
-- [Chart.js](https://www.chartjs.org/)
 
 ---
 ## Workflow
 
-- index.html → home.html                  ← Welcome & Login  
-- home.html branches to:                  ← Central Hub Dashboard  
+- index.html                               ← Welcome 
+- index.html branches to:                  ← Central Hub Dashboard  
   - dashboard.html                          (Tasks)  
-  - planner.html                            (Calendar)
+  - pdfparser.html                            (PDF Summarizer)
   - notes.html                              (Sticky Notes)  
-- From dashboard.html → pdf-notes.html       ← Upload PDFs & Generate Notes  
+- From dashboard.html → pdfparser.html       ← Upload PDFs & Generate Summaries 
 
 ---
 Built by students. For students.
