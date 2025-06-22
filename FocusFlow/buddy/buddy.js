@@ -30,10 +30,10 @@ function showStudyBuddyMessage(message, mood = "normal") {
   speechSynthesis.cancel();
   speechSynthesis.speak(utterance);
 
-  // Hide bubble after 5 seconds
+  // Hide bubble after 6 seconds
   setTimeout(() => {
     bubble.style.display = "none";
-  }, 5000);
+  }, 6000);
 }
 
 function onBuddyClick() {
@@ -46,33 +46,50 @@ function onBuddyClick() {
   showStudyBuddyMessage(message, "normal");
 }
 
-// Make the click function globally available
 window.onBuddyClick = onBuddyClick;
 
-// 😠 Strict reminder after idle
-let inactivityTimer;
+// Track user visibility and inactivity
+let lastActiveTime = Date.now();
 
-function resetInactivityTimer() {
-  clearTimeout(inactivityTimer);
+// Inactivity checker
+function checkIdleStrictReminder() {
+  const now = Date.now();
+  const idleDuration = now - lastActiveTime;
 
-  // 👉 If user returns after strict mode, reset to happy mood
-  const buddyImg = document.getElementById("study-buddy-img");
-  if (buddyImg && buddyImg.src.includes("senpai-strict.png")) {
-    showStudyBuddyMessage("Welcome back! Let’s stay focused!", "normal");
-  }
-
-  inactivityTimer = setTimeout(() => {
+  if (idleDuration > 10000) { // 5 minutes
     showStudyBuddyMessage("Enough idle time! Refocus now.", "strict");
-  }, 10000); // 5 minutes = 300000 (change to 20000 for testing)
+  }
 }
 
-// Reset timer on user activity
-["click", "mousemove", "keydown"].forEach(evt =>
-  window.addEventListener(evt, resetInactivityTimer)
-);
-resetInactivityTimer();
+// Reset activity time on any user action
+function resetInactivityTimer() {
+  const buddyImg = document.getElementById("study-buddy-img");
+  const wasStrict = buddyImg && buddyImg.src.includes("senpai-strict.png");
 
-// ✅ Called after script is injected
+  lastActiveTime = Date.now();
+
+  if (wasStrict) {
+    showStudyBuddyMessage("Welcome back! Let’s stay focused!", "normal");
+  }
+}
+
+// Events that count as activity
+["click", "mousemove", "keydown", "scroll"].forEach(event =>
+  window.addEventListener(event, resetInactivityTimer)
+);
+
+// Check idle every minute
+setInterval(checkIdleStrictReminder, 60000);
+
+// Also check when tab becomes visible again
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    checkIdleStrictReminder();
+    resetInactivityTimer();
+  }
+});
+
+// Initial greeting logic
 function initStudyBuddy() {
   const path = window.location.pathname;
 
@@ -82,14 +99,27 @@ function initStudyBuddy() {
     } else {
       const messages = [
         "You're doing great today! 🌟",
-        "Keep it up! Let's finish one more task",
-        "I'm proud of your effort. 💖 for you!"
+        "Keep it up! Let’s finish one more task.",
+        "I’m proud of your effort. 💖"
       ];
       const message = messages[Math.floor(Math.random() * messages.length)];
       showStudyBuddyMessage(message, "normal");
     }
-  }, 300);
+  }, 500);
 }
 
-// Make init globally callable after script loads
 window.initStudyBuddy = initStudyBuddy;
+
+document.getElementById("buddy-placeholder").innerHTML = `
+  <div id="study-buddy" class="study-buddy">
+    <div id="buddy-bubble" class="buddy-bubble"></div>
+    <img
+      id="study-buddy-img"
+      src="src/assets/characters/senpai-happy.png"
+      alt="Study Buddy"
+      class="float"
+      onclick="onBuddyClick()"
+    />
+  </div>
+`;
+
