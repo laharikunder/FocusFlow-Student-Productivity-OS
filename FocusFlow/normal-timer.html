@@ -13,12 +13,27 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to right, #a18cd1 0%, #fbc2eb 100%);
+    background: linear-gradient(300deg, rgb(11, 1, 51), rgb(45, 146, 146), rgb(7, 1, 53));
     color: white;
     text-align: center;
     padding: 20px;
     transition: background 0.3s, color 0.3s;
+    background-size: 180% 180%;
+    animation: gradientMove 5s ease infinite;
   }
+
+  @keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+  }
+
   .section {
   margin-top: 20px;
   display: flex;
@@ -56,7 +71,7 @@
   justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .controls button {
@@ -284,44 +299,51 @@ button[onclick*="sticky-board"] {
 
 
   
-  select {
-    margin-top: 10px;
-    padding: 8px;
-    font-size: 1em;
-    border-radius: 6px;
-    border: none;
-    background-color: #111;    
-    color: white;
+select {
+  background: rgba(255, 255, 255, 0.07);
+  color: #000000;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 1em;
+  border-radius: 6px;
+  border: none;
+  
+}
+
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.falling-star {
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background: white;
+  animation: fall 3s linear infinite;
+  opacity: 0.6;
+}
+@keyframes fall {
+  from {
+    transform: translateY(-100px);
+    opacity: 0.8;
   }
-  .animated-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: -1;
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
   }
-  .falling-star {
-    position: absolute;
-    width: 2px;
-    height: 40px;
-    background: white;
-    animation: fall 3s linear infinite;
-    opacity: 0.6;
-  }
-  @keyframes fall {
-    from {
-      transform: translateY(-100px);
-      opacity: 0.8;
-    }
-    to {
-      transform: translateY(110vh);
-      opacity: 0;
-    }
-  }
-  #countdownDisplay.running {
+}
+#countdownDisplay.running {
   animation: pulse-ring 1.5s ease-in-out infinite;
 }
 
@@ -339,10 +361,10 @@ button[onclick*="sticky-board"] {
 
 #nudge {
   position: absolute;
-  top: 100px;
+  top: 30px;
   font-size: 1.1em;
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.071);
   backdrop-filter: blur(6px);
   border-radius: 12px;
   padding: 8px 16px;
@@ -371,6 +393,28 @@ button[onclick*="sticky-board"] {
   left: 20px;
 }
 
+/* .top-left button {
+  background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+} */
+
+.top-left button {
+    background: linear-gradient(45deg, #8b5cf6, #ec4899);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    margin: 10px auto 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: gradient-shift 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
 .top-right {
   position: absolute;
   top: 20px;
@@ -381,10 +425,12 @@ button[onclick*="sticky-board"] {
   body.dark {
     background: linear-gradient(135deg, #2d1b69 0%, #11052c 50%, #0f0c29 100%) !important;
     color: #ffffff !important;
+    background-size: 180% 180%;
+    animation: gradientMove 5s ease infinite;
   }
   body.dark select {
     
-    color: white !important;
+    color: rgb(123, 123, 123) !important;
   }
   body.dark button,
   body.dark label {
@@ -458,6 +504,22 @@ body.sun-theme {
   min-height: 100vh;
 }
 
+.timer-container {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  padding: 40px 30px;
+  max-width: 800px;
+  width: 90%;
+  margin: 10px auto 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+
 
 </style>
 </head>
@@ -488,32 +550,34 @@ body.sun-theme {
 
 
   <div id="nudge">Let’s go! 💪</div>
-  <div class="timer-ring-wrapper">
-  <div id="countdownDisplay">
-    <span id="timeText">⏱ 25:00</span>
-  </div>
-  </div>
-  <div id="timerStatus">
-    <span id="pauseDot" class="statusDot" style="display:none;"></span>
-    <span id="runDot" class="statusDot" style="display:none;"></span>
-    <span id="finishDot" class="statusDot" style="display:none;"></span>
-    <span id="statusText" ></span>
+  <div class="timer-container">
+    <div class="timer-ring-wrapper">
+      <div id="countdownDisplay">
+        <span id="timeText">⏱ 25:00</span>
+      </div>
+    </div>
+    <div id="timerStatus">
+      <span id="pauseDot" class="statusDot" style="display:none;"></span>
+      <span id="runDot" class="statusDot" style="display:none;"></span>
+      <span id="finishDot" class="statusDot" style="display:none;"></span>
+      <span id="statusText" ></span>
+    </div>
+
+    
+    <div class="controls">
+      <button onclick="startTimerManually()" title="Start the timer" style="border-radius: 50px;">✅ Start</button>
+      <button onclick="pauseTimer()" title="Pause the timer" style="border-radius: 50px;">⏸️ Pause</button>
+      <button onclick="resumeTimer()" title="Resume the timer" style="border-radius: 50px;">▶️ Resume</button>
+      <button onclick="resetTimer()" title="Reset and clear the timer" style="border-radius: 50px;">🔄 Reset</button>
+    </div>
   </div>
 
-  
-  <div class="controls">
- <button onclick="startTimerManually()" title="Start the timer">✅ Start</button>
-<button onclick="pauseTimer()" title="Pause the timer">⏸️ Pause</button>
-<button onclick="resumeTimer()" title="Resume the timer">▶️ Resume</button>
-<button onclick="resetTimer()" title="Reset and clear the timer">🔄 Reset</button>
-
-
-</div>
 <div class="section" >
-  <button onclick="window.open('sticky-board.html', '_blank')" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 6px; cursor: pointer; background: #00cec9; color: white;">
-    📝 Add Notes
-  </button>
+    <a href="sticky-board.html" class="button-link" style="display: inline-block; padding: 10px 20px; font-size: 1em; border: none; border-radius: 15px; cursor: pointer; background: linear-gradient(45deg, #3a7bd5, #00d2ff); color: white; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(223, 227, 241, 0.4); text-decoration: none; font-family: 'Poppins', sans-serif;">
+      📝 Make Notes
+    </a>
 </div>
+
 <div class="section">
   <label>🎵 Background Music:
     <select id="bgMusicSelect" onchange="playMusic(this.value)">
@@ -555,17 +619,22 @@ body.sun-theme {
     document.getElementById('countdownDisplay').style.setProperty('--progress-color', '#3498db');
 
 }
-const checkbox = document.getElementById('theme-toggle');
-  checkbox.addEventListener('change', () => {
-  const body = document.body;
-  if (checkbox.checked) {
-    // Moon clicked → Enable dark mode
-    body.classList.add('dark');
-    body.classList.remove('sun-theme');
-  } else {
-    // Sun clicked → Enable sun theme
-    body.classList.remove('dark');
-    body.classList.add('sun-theme');
+
+const toggle = document.getElementById("theme-toggle");
+const body = document.body;
+
+// Toggle theme
+toggle.addEventListener("change", () => {
+  body.classList.toggle("dark");
+  localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "sun-theme");
+});
+
+// Load saved theme
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark");
+    toggle.checked = true;
   }
 });
 

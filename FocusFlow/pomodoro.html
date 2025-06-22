@@ -43,9 +43,7 @@
 
 
 <div class="notes-button-container">
-  <button id="makeNotesBtn">
-    📝 Make Notes
-  </button>
+  <a href="sticky-board.html" id="makeNotesBtn">📝 Make Notes</a>
 </div>
 <div class="dark-mode-toggle">
   <div class="theme-toggle-switch" id="themeToggle">
@@ -54,6 +52,8 @@
     <div class="ball"></div>
   </div>
 </div>
+
+
 <script>
   const themeToggle = document.getElementById('themeToggle');
   const body = document.body;
@@ -62,6 +62,7 @@
     body.classList.toggle('light-mode');
     body.classList.toggle('dark-mode');
   });
+
 </script>
 
   <script src="pomodoro.js"></script>
