@@ -30,7 +30,7 @@ function showStudyBuddyMessage(message, mood = "normal") {
   speechSynthesis.cancel();
   speechSynthesis.speak(utterance);
 
-  // Hide bubble after 6 seconds
+  // Hide bubble
   setTimeout(() => {
     bubble.style.display = "none";
   }, 6000);
@@ -56,7 +56,7 @@ function checkIdleStrictReminder() {
   const now = Date.now();
   const idleDuration = now - lastActiveTime;
 
-  if (idleDuration > 10000) { // 5 minutes
+  if (idleDuration > 60000) {
     showStudyBuddyMessage("Enough idle time! Refocus now.", "strict");
   }
 }

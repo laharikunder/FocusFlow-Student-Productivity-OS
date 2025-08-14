@@ -95,7 +95,7 @@ async function extractTextFromPDF(file) {
 }
 
 // Text Summarization
-function summarizeText(text, maxSentences = 3) {
+function summarizeText(text, maxSentences = 12) {
   const sentences = text
     .replace(/\s+/g, ' ')
     .split(/(?<=[.!?])\s+/)
@@ -104,7 +104,8 @@ function summarizeText(text, maxSentences = 3) {
   const selected = sentences.slice(0, maxSentences);
   return selected
     .map(s => s.trim())
-    .join('\n\n') + (sentences.length > maxSentences ? '...' : '');
+    // .join('\n\n') + (sentences.length > maxSentences ? '...' : '');
+    .join('\n\n') + (sentences.length > maxSentences ? ' ' : ''); 
 }
 
 
